@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lustios-tok/static/css/main.49094332.css",
+    "main.js": "/lustios-tok/static/js/main.bf2bd6c5.js",
+    "static/js/453.151a391a.chunk.js": "/lustios-tok/static/js/453.151a391a.chunk.js",
+    "index.html": "/lustios-tok/index.html",
+    "main.49094332.css.map": "/lustios-tok/static/css/main.49094332.css.map",
+    "main.bf2bd6c5.js.map": "/lustios-tok/static/js/main.bf2bd6c5.js.map",
+    "453.151a391a.chunk.js.map": "/lustios-tok/static/js/453.151a391a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49094332.css",
+    "static/js/main.bf2bd6c5.js"
+  ]
+}
