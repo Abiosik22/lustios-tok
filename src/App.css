@@ -1,0 +1,258 @@
+:root {
+  --bg-color: #000000;
+  --card-bg: #1e1e1e;
+  --accent-cyan: #00f2ea;
+  --accent-pink: #ff0050;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --glass-bg: rgba(20, 20, 20, 0.85);
+  --nav-height: 60px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden; /* Скролл только внутри контейнеров */
+}
+
+/* --- Layout --- */
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  /* Скрываем скроллбар */
+  scrollbar-width: none; 
+}
+.content-area::-webkit-scrollbar { display: none; }
+
+/* --- Feed (TikTok Style) --- */
+.feed-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.feed-item {
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.feed-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* Панель управления автоскроллом */
+.auto-scroll-panel {
+  position: absolute;
+  bottom: 140px; /* Над описанием */
+  right: 10px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #333;
+}
+
+.auto-scroll-panel input {
+  width: 40px;
+  background: #333;
+  border: none;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.auto-scroll-btn {
+  background: transparent;
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.auto-scroll-btn.active {
+  background: var(--accent-cyan);
+  color: black;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.feed-overlay {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 20px 15px;
+  z-index: 5;
+  pointer-events: none; /* Чтобы клики проходили сквозь градиент */
+}
+
+/* --- Gallery Grid --- */
+.gallery-container {
+  padding: 20px 10px 80px 10px;
+}
+
+.filters-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  background: var(--card-bg);
+  border: 1px solid #333;
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: white;
+  flex: 1;
+  min-width: 150px;
+}
+
+.sort-select {
+  background: var(--card-bg);
+  border: 1px solid #333;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  position: relative;
+  aspect-ratio: 2/3;
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card.selected {
+  border: 3px solid var(--accent-cyan);
+  transform: scale(0.96);
+}
+
+.card.delete-mode {
+  border: 3px solid var(--accent-pink);
+}
+
+.grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.check-mark {
+  position: absolute;
+  top: 5px; right: 5px;
+  background: var(--accent-cyan);
+  color: black;
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  display: flex; justify-content: center; align-items: center;
+  font-weight: bold;
+}
+
+/* --- Navigation --- */
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.nav-btn.active {
+  color: var(--text-primary);
+}
+
+.nav-btn svg {
+  margin-bottom: 4px;
+}
+
+/* Кнопка "Загрузить еще" */
+.load-more-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--card-bg);
+  color: white;
+  border: none;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+}
+
+.nav-btn {
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  color: white; /* Легкая подсветка при наведении */
+}
+
+.auto-scroll-btn:hover {
+  background: rgba(0, 242, 234, 0.2);
+}
