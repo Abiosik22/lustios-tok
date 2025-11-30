@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import List
 import json
 import random
+import requests
 import os
 
 from luscious import Luscious
@@ -20,6 +21,21 @@ app.add_middleware(
 
 api = Luscious()
 DB_FILE = "selected_albums.json"
+
+def get_external_ip():
+    """Получает и печатает внешний IP-адрес."""
+    try:
+        response = requests.get('https://api.ipify.org')
+        if response.status_code == 200:
+            ip_address = response.text
+            print(f"Ваш внешний IP-адрес: {ip_address}")
+        else:
+            print(f"Не удалось получить IP. Код статуса: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Произошла ошибка при запросе: {e}")
+
+get_external_ip()
+
 
 def load_subs_from_file():
     if not os.path.exists(DB_FILE):
@@ -177,4 +193,5 @@ def get_feed():
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8001)
