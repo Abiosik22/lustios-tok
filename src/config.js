@@ -1,2 +1,2 @@
-// src/config.js
-export const API_URL = import.meta.env.VITE_API_URL;
+// Если переменной нет (локально), используем localhost
+export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8001";
