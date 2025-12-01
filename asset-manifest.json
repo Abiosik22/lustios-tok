@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/lustios-tok/static/css/main.16da68c5.css",
-    "main.js": "/lustios-tok/static/js/main.37b64460.js",
+    "main.js": "/lustios-tok/static/js/main.5fca53d3.js",
     "static/js/453.151a391a.chunk.js": "/lustios-tok/static/js/453.151a391a.chunk.js",
     "index.html": "/lustios-tok/index.html",
     "main.16da68c5.css.map": "/lustios-tok/static/css/main.16da68c5.css.map",
-    "main.37b64460.js.map": "/lustios-tok/static/js/main.37b64460.js.map",
+    "main.5fca53d3.js.map": "/lustios-tok/static/js/main.5fca53d3.js.map",
     "453.151a391a.chunk.js.map": "/lustios-tok/static/js/453.151a391a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.16da68c5.css",
-    "static/js/main.37b64460.js"
+    "static/js/main.5fca53d3.js"
   ]
 }
